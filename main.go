@@ -1,8 +1,8 @@
 package main
 
 import (
-	"learngo/app"
-	"learngo/config"
+	"go-todo-rest-api-example/app"
+	"go-todo-rest-api-example/config"
 )
 
 func main() {

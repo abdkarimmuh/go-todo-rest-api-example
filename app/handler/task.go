@@ -2,7 +2,7 @@ package handler
 
 import (
 	"encoding/json"
-	"learngo/app/model"
+	"go-todo-rest-api-example/app/model"
 	"net/http"
 	"strconv"
 

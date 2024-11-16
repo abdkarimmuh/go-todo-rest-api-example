@@ -1,4 +1,4 @@
-module learngo
+module go-todo-rest-api-example
 
 go 1.23.3
 

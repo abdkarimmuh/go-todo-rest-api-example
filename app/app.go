@@ -2,9 +2,9 @@ package app
 
 import (
 	"fmt"
-	"learngo/app/handler"
-	"learngo/app/model"
-	"learngo/config"
+	"go-todo-rest-api-example/app/handler"
+	"go-todo-rest-api-example/app/model"
+	"go-todo-rest-api-example/config"
 	"log"
 	"net/http"
 
