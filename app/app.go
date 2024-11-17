@@ -49,7 +49,7 @@ func (a *App) setRouters() {
 	a.Put("/projects/{title}/archive", a.handleRequest(handler.ArchiveProject))
 	a.Delete("/projects/{title}/archive", a.handleRequest(handler.RestoreProject))
 
-	// Routing for handling the task
+	// Routing for handling the tasks
 	a.Get("/projects/{title}/tasks", a.handleRequest(handler.GetAllTasks))
 	a.Post("/projects/{title}/tasks", a.handleRequest(handler.CreateTask))
 	a.Get("/projects/{title}/tasks/{id:[0-9]+}", a.handleRequest(handler.GetTask))

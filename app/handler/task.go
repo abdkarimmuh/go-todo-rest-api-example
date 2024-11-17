@@ -19,12 +19,12 @@ func GetAllTasks(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	task := model.Task{}
-	if err := db.Model(&project).Related(&task).Error; err != nil {
+	tasks := []model.Task{}
+	if err := db.Model(&project).Related(&tasks).Error; err != nil {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusOK, task)
+	respondJSON(w, http.StatusOK, tasks)
 }
 
 func CreateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -38,7 +38,7 @@ func CreateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	task := model.Task{ProjectID: project.ID}
 
-	decoder := json.NewDecoder((r.Body))
+	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&task); err != nil {
 		respondError(w, http.StatusBadRequest, err.Error())
 		return
@@ -84,7 +84,7 @@ func UpdateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	decoder := json.NewDecoder((r.Body))
+	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&task); err != nil {
 		respondError(w, http.StatusBadRequest, err.Error())
 		return
@@ -113,7 +113,7 @@ func DeleteTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := db.Delete(&task).Error; err != nil {
+	if err := db.Delete(&project).Error; err != nil {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -166,13 +166,12 @@ func UndoTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	respondJSON(w, http.StatusOK, task)
 }
 
-// getProjectOr404 gets a project instance if exists, or respond the 404 error otherwise
-func getTaskOr404(db *gorm.DB, id int, w http.ResponseWriter, _ *http.Request) *model.Task {
+// getTaskOr404 gets a task instance if exists, or respond the 404 error otherwise
+func getTaskOr404(db *gorm.DB, id int, w http.ResponseWriter, r *http.Request) *model.Task {
 	task := model.Task{}
 	if err := db.First(&task, id).Error; err != nil {
 		respondError(w, http.StatusNotFound, err.Error())
 		return nil
 	}
 	return &task
-
 }
