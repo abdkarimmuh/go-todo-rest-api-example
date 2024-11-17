@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"go-todo-rest-api-example/app/model"
 	"net/http"
 
@@ -116,6 +117,7 @@ func RestoreProject(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 // getProjectOr404 gets a project instance if exists, or respond the 404 error otherwise
 func getProjectOr404(db *gorm.DB, title string, w http.ResponseWriter, r *http.Request) *model.Project {
 	project := model.Project{}
+	fmt.Println("Request ", r.Body)
 	if err := db.First(&project, model.Project{Title: title}).Error; err != nil {
 		respondError(w, http.StatusNotFound, err.Error())
 		return nil
