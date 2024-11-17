@@ -1,9 +1,5 @@
 package config
 
-import (
-	_ "github.com/jinzhu/gorm/dialects/mysql"
-)
-
 type Config struct {
 	DB *DBConfig
 }

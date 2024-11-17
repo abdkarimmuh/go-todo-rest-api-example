@@ -4,13 +4,14 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type Project struct {
 	gorm.Model
 	Title    string `gorm:"unique" json:"title"`
 	Archived bool   `json:"archived"`
-	Task     []Task `gorm:"ForeignKey:ProjectID" json:"tasks"`
+	Tasks    []Task `gorm:"ForeignKey:ProjectID" json:"tasks"`
 }
 
 func (p *Project) Archive() {
