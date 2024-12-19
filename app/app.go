@@ -47,7 +47,7 @@ func (a *App) setRouters() {
 	a.Put("/projects/{title}", a.handleRequest(handler.UpdateProject))
 	a.Delete("/projects/{title}", a.handleRequest(handler.DeleteProject))
 	a.Put("/projects/{title}/archive", a.handleRequest(handler.ArchiveProject))
-	a.Delete("/projects/{title}/archive", a.handleRequest(handler.RestoreProject))
+	a.Put("/projects/{title}/archive", a.handleRequest(handler.RestoreProject))
 
 	// Routing for handling the tasks
 	a.Get("/projects/{title}/tasks", a.handleRequest(handler.GetAllTasks))
@@ -56,7 +56,7 @@ func (a *App) setRouters() {
 	a.Put("/projects/{title}/tasks/{id:[0-9]+}", a.handleRequest(handler.UpdateTask))
 	a.Delete("/projects/{title}/tasks/{id:[0-9]+}", a.handleRequest(handler.DeleteTask))
 	a.Put("/projects/{title}/tasks/{id:[0-9]+}/complete", a.handleRequest(handler.CompleteTask))
-	a.Delete("/projects/{title}/tasks/{id:[0-9]+}/complete", a.handleRequest(handler.UndoTask))
+	a.Put("/projects/{title}/tasks/{id:[0-9]+}/complete", a.handleRequest(handler.UndoTask))
 }
 
 // Get wraps the router for GET method
