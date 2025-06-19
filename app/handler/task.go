@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"go-todo-rest-api-example/app/model"
 	"net/http"
 	"strconv"
@@ -22,10 +21,10 @@ func GetAllTasks(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	tasks := []model.Task{}
 	if err := db.Model(&project).Related(&tasks).Error; err != nil {
-		respondError(w, http.StatusInternalServerError, err.Error())
+		responseError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusOK, tasks)
+	responseJSON(w, http.StatusOK, tasks)
 }
 
 func CreateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -41,16 +40,16 @@ func CreateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&task); err != nil {
-		respondError(w, http.StatusBadRequest, err.Error())
+		responseError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	defer r.Body.Close()
 
 	if err := db.Save(&task).Error; err != nil {
-		respondError(w, http.StatusInternalServerError, err.Error())
+		responseError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusCreated, task)
+	responseJSON(w, http.StatusCreated, task)
 }
 
 func GetTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -67,7 +66,7 @@ func GetTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if task == nil {
 		return
 	}
-	respondJSON(w, http.StatusOK, task)
+	responseJSON(w, http.StatusOK, task)
 }
 
 func UpdateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -87,16 +86,16 @@ func UpdateTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&task); err != nil {
-		respondError(w, http.StatusBadRequest, err.Error())
+		responseError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	defer r.Body.Close()
 
 	if err := db.Save(&task).Error; err != nil {
-		respondError(w, http.StatusInternalServerError, err.Error())
+		responseError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusOK, task)
+	responseJSON(w, http.StatusOK, task)
 }
 
 func DeleteTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -115,10 +114,10 @@ func DeleteTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := db.Delete(&project).Error; err != nil {
-		respondError(w, http.StatusInternalServerError, err.Error())
+		responseError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusNoContent, nil)
+	responseJSON(w, http.StatusNoContent, nil)
 }
 
 func CompleteTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -138,10 +137,10 @@ func CompleteTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	task.Complete()
 	if err := db.Save(&task).Error; err != nil {
-		respondError(w, http.StatusInternalServerError, err.Error())
+		responseError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusOK, task)
+	responseJSON(w, http.StatusOK, task)
 }
 
 func UndoTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -161,17 +160,16 @@ func UndoTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	task.Undo()
 	if err := db.Save(&task).Error; err != nil {
-		respondError(w, http.StatusInternalServerError, err.Error())
+		responseError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJSON(w, http.StatusOK, task)
+	responseJSON(w, http.StatusOK, task)
 }
 
 func getTaskOr404(db *gorm.DB, id int, w http.ResponseWriter, r *http.Request) *model.Task {
 	task := model.Task{}
-	fmt.Println("Request ", r.Body)
 	if err := db.First(&task, id).Error; err != nil {
-		respondError(w, http.StatusNotFound, err.Error())
+		responseError(w, http.StatusNotFound, err.Error())
 		return nil
 	}
 	return &task
