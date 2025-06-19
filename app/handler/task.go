@@ -167,7 +167,6 @@ func UndoTask(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	respondJSON(w, http.StatusOK, task)
 }
 
-// getTaskOr404 gets a task instance if exists, or respond the 404 error otherwise
 func getTaskOr404(db *gorm.DB, id int, w http.ResponseWriter, r *http.Request) *model.Task {
 	task := model.Task{}
 	fmt.Println("Request ", r.Body)

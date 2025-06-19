@@ -1,26 +1,29 @@
 # Go Todo REST API Example
+
 A RESTful API example for simple todo application with Go
 
 It is a just simple tutorial or example for making simple RESTful API with Go using **gorilla/mux** (A nice mux library) and **gorm** (An ORM for Go)
 
 ## Installation & Run
+
 ```bash
 # Download this project
 go get github.com/abdkarimmuh/go-todo-rest-api-example
 ```
 
 Before running API server, you should set the database config with yours or set the your database config with my values on [config.go](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/config/config.go)
+
 ```go
 func GetConfig() *Config {
-	return &Config{
-		DB: &DBConfig{
-			Dialect:  "mysql",
-			Username: "root",
-			Password: "password",
-			Name:     "todoapp",
-			Charset:  "utf8",
-		},
-	}
+ return &Config{
+  DB: &DBConfig{
+   Dialect:  "mysql",
+   Username: "root",
+   Password: "password",
+   Name:     "todoapp",
+   Charset:  "utf8",
+  },
+ }
 }
 ```
 
@@ -34,7 +37,8 @@ go build
 ```
 
 ## Structure
-```
+
+```bash
 ├── app
 │   ├── app.go
 │   ├── handler          // Our API core handlers
@@ -50,38 +54,44 @@ go build
 
 ## API
 
-#### /projects
+### /projects
+
 * `GET` : Get all projects
 * `POST` : Create a new project
 
 #### /projects/:title
+
 * `GET` : Get a project
 * `PUT` : Update a project
 * `DELETE` : Delete a project
 
 #### /projects/:title/archive
+
 * `PUT` : Archive a project
-* `DELETE` : Restore a project 
+* `PUT` : Restore a project
 
 #### /projects/:title/tasks
+
 * `GET` : Get all tasks of a project
 * `POST` : Create a new task in a project
 
 #### /projects/:title/tasks/:id
+
 * `GET` : Get a task of a project
 * `PUT` : Update a task of a project
 * `DELETE` : Delete a task of a project
 
 #### /projects/:title/tasks/:id/complete
+
 * `PUT` : Complete a task of a project
-* `DELETE` : Undo a task of a project
+* `PUT` : Undo a task of a project
 
 ## Todo
 
-- [x] Support basic REST APIs.
-- [ ] Support Authentication with user for securing the APIs.
-- [ ] Make convenient wrappers for creating API handlers.
-- [ ] Write the tests for all APIs.
-- [x] Organize the code with packages
-- [ ] Make docs with GoDoc
-- [ ] Building a deployment process 
+* [x] Support basic REST APIs.
+* [ ] Support Authentication with user for securing the APIs.
+* [ ] Make convenient wrappers for creating API handlers.
+* [ ] Write the tests for all APIs.
+* [x] Organize the code with packages
+* [ ] Make docs with GoDoc
+* [ ] Building a deployment process

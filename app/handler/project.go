@@ -114,7 +114,6 @@ func RestoreProject(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	respondJSON(w, http.StatusOK, project)
 }
 
-// getProjectOr404 gets a project instance if exists, or respond the 404 error otherwise
 func getProjectOr404(db *gorm.DB, title string, w http.ResponseWriter, r *http.Request) *model.Project {
 	project := model.Project{}
 	fmt.Println("Request ", r.Body)
