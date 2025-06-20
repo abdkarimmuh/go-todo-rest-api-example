@@ -11,7 +11,7 @@ It is a just simple tutorial or example for making simple RESTful API with Go us
 go get github.com/abdkarimmuh/go-todo-rest-api-example
 ```
 
-Before you run the API, you must create a `.env` file containing your database configuration by copying from [.env.example](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/config/.env.example).
+Before you run the API, you must create a `.env` file containing your database configuration by copying from [.env.example](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/.env.example).
 
 ```env
 DB_DIALECT=mysql
