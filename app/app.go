@@ -18,7 +18,7 @@ type App struct {
 }
 
 func (a *App) Initialize(config *config.Config) {
-	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&parseTime=True",
+	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True",
 		config.DB.Username,
 		config.DB.Password,
 		config.DB.Host,

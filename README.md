@@ -11,20 +11,15 @@ It is a just simple tutorial or example for making simple RESTful API with Go us
 go get github.com/abdkarimmuh/go-todo-rest-api-example
 ```
 
-Before running API server, you should set the database config with yours or set the your database config with my values on [config.go](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/config/config.go)
+Before you run the API, you must create a `.env` file containing your database configuration by copying from [.env.example](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/config/.env.example).
 
-```go
-func GetConfig() *Config {
- return &Config{
-  DB: &DBConfig{
-   Dialect:  "mysql",
-   Username: "root",
-   Password: "password",
-   Name:     "todoapp",
-   Charset:  "utf8",
-  },
- }
-}
+```env
+DB_DIALECT=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=password
+DB_NAME=todoapp
 ```
 
 ```bash
@@ -38,7 +33,7 @@ go build
 
 ## Structure
 
-```bash
+```text
 ├── app
 │   ├── app.go
 │   ├── handler          // Our API core handlers

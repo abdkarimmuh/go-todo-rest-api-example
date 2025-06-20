@@ -1,5 +1,7 @@
 package config
 
+import "os"
+
 type Config struct {
 	DB *DBConfig
 }
@@ -7,7 +9,7 @@ type Config struct {
 type DBConfig struct {
 	Dialect  string
 	Host     string
-	Port     int
+	Port     string
 	Username string
 	Password string
 	Name     string
@@ -17,12 +19,12 @@ type DBConfig struct {
 func GetConfig() *Config {
 	return &Config{
 		DB: &DBConfig{
-			Dialect:  "mysql",
-			Host:     "127.0.0.1",
-			Port:     3306,
-			Username: "root",
-			Password: "password",
-			Name:     "todoapp",
+			Dialect:  os.Getenv("DB_DIALECT"),
+			Host:     os.Getenv("DB_HOST"),
+			Port:     os.Getenv("DB_PORT"),
+			Username: os.Getenv("DB_USER"),
+			Password: os.Getenv("DB_PASSWORD"),
+			Name:     os.Getenv("DB_NAME"),
 			Charset:  "utf8",
 		},
 	}
