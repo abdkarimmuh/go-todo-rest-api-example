@@ -18,15 +18,14 @@ type App struct {
 }
 
 func (a *App) Initialize(config *config.Config) {
-	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True",
+	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True",
 		config.DB.Username,
 		config.DB.Password,
 		config.DB.Host,
 		config.DB.Port,
-		config.DB.Name,
-		config.DB.Charset)
+		config.DB.Name)
 
-	db, err := gorm.Open(config.DB.Dialect, dbURI)
+	db, err := gorm.Open("mysql", dbURI)
 	if err != nil {
 		log.Fatal("Could not connect database")
 	}

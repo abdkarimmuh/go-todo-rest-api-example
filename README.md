@@ -14,7 +14,6 @@ go get github.com/abdkarimmuh/go-todo-rest-api-example
 Before you run the API, you must create a `.env` file containing your database configuration by copying from [.env.example](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/.env.example).
 
 ```env
-DB_DIALECT=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
