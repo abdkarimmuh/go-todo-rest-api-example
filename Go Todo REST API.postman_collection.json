@@ -1,0 +1,493 @@
+{
+	"info": {
+		"_postman_id": "4288ece3-fc03-48fe-819b-412b6b678ec0",
+		"name": "Go Todo REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46025483"
+	},
+	"item": [
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get all projects",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects/:title",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test aja"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title/archive",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"archive"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test 1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title/archive",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"archive"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test 1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Get all tasks of a project",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task in a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test\",\r\n    \"priority\": \"0\",\r\n    \"deadline\": \"2025-06-19T09:22:55+07:00\",\r\n    \"project_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test 1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a task of a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task of a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test\",\r\n    \"priority\": \"1\",\r\n    \"deadline\": \"2025-06-19T09:22:55+07:00\",\r\n    \"project_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a task of a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete a task of a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks/:id/complete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks",
+								":id",
+								"complete"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undo a task of a project",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects/:title/tasks/:id/undo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								":title",
+								"tasks",
+								":id",
+								"undo"
+							],
+							"variable": [
+								{
+									"key": "title",
+									"value": "Test"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

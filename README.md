@@ -46,6 +46,8 @@ go build
 └── main.go
 ```
 
+Here is an example of an API [collection](https://github.com/abdkarimmuh/go-todo-rest-api-example/blob/main/.env.example) file using Postman.
+
 ## API
 
 ### /projects
